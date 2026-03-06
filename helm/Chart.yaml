@@ -1,0 +1,6 @@
+apiVersion: v2
+name: subscription-service
+description: Helm chart for subscription-service
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

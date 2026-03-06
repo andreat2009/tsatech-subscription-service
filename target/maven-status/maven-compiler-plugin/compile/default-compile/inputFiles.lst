@@ -1,0 +1,11 @@
+/Users/andreaterrasi/Documents/New_project/subscription-service/src/main/java/com/newproject/subscription/SubscriptionServiceApplication.java
+/Users/andreaterrasi/Documents/New_project/subscription-service/src/main/java/com/newproject/subscription/config/SecurityConfig.java
+/Users/andreaterrasi/Documents/New_project/subscription-service/src/main/java/com/newproject/subscription/controller/CustomerSubscriptionController.java
+/Users/andreaterrasi/Documents/New_project/subscription-service/src/main/java/com/newproject/subscription/domain/CustomerSubscription.java
+/Users/andreaterrasi/Documents/New_project/subscription-service/src/main/java/com/newproject/subscription/dto/CustomerSubscriptionRequest.java
+/Users/andreaterrasi/Documents/New_project/subscription-service/src/main/java/com/newproject/subscription/dto/CustomerSubscriptionResponse.java
+/Users/andreaterrasi/Documents/New_project/subscription-service/src/main/java/com/newproject/subscription/events/DomainEvent.java
+/Users/andreaterrasi/Documents/New_project/subscription-service/src/main/java/com/newproject/subscription/events/EventPublisher.java
+/Users/andreaterrasi/Documents/New_project/subscription-service/src/main/java/com/newproject/subscription/exception/NotFoundException.java
+/Users/andreaterrasi/Documents/New_project/subscription-service/src/main/java/com/newproject/subscription/repository/CustomerSubscriptionRepository.java
+/Users/andreaterrasi/Documents/New_project/subscription-service/src/main/java/com/newproject/subscription/service/CustomerSubscriptionService.java
