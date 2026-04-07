@@ -6,6 +6,7 @@ import com.newproject.subscription.dto.CustomerSubscriptionResponse;
 import com.newproject.subscription.events.EventPublisher;
 import com.newproject.subscription.exception.NotFoundException;
 import com.newproject.subscription.repository.CustomerSubscriptionRepository;
+import com.newproject.subscription.security.RequestActor;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -18,14 +19,17 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomerSubscriptionService {
     private final CustomerSubscriptionRepository repository;
     private final EventPublisher eventPublisher;
+    private final RequestActor requestActor;
 
-    public CustomerSubscriptionService(CustomerSubscriptionRepository repository, EventPublisher eventPublisher) {
+    public CustomerSubscriptionService(CustomerSubscriptionRepository repository, EventPublisher eventPublisher, RequestActor requestActor) {
         this.repository = repository;
         this.eventPublisher = eventPublisher;
+        this.requestActor = requestActor;
     }
 
     @Transactional(readOnly = true)
     public List<CustomerSubscriptionResponse> list(Long customerId) {
+        requestActor.assertCustomerAccessIfAuthenticated(customerId);
         return repository.findByCustomerIdOrderByCreatedAtDesc(customerId)
             .stream()
             .map(this::toResponse)
@@ -34,6 +38,7 @@ public class CustomerSubscriptionService {
 
     @Transactional
     public CustomerSubscriptionResponse create(Long customerId, CustomerSubscriptionRequest request) {
+        requestActor.assertCustomerAccessIfAuthenticated(customerId);
         CustomerSubscription subscription = new CustomerSubscription();
         subscription.setCustomerId(customerId);
         apply(subscription, request, true);
@@ -49,6 +54,7 @@ public class CustomerSubscriptionService {
 
     @Transactional
     public CustomerSubscriptionResponse update(Long customerId, Long subscriptionId, CustomerSubscriptionRequest request) {
+        requestActor.assertCustomerAccessIfAuthenticated(customerId);
         CustomerSubscription subscription = repository.findByIdAndCustomerId(subscriptionId, customerId)
             .orElseThrow(() -> new NotFoundException("Subscription not found"));
 
